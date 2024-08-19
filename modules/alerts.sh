@@ -2,11 +2,10 @@
 
 ################################
 ## Alert definition
+## Requiere: Colors
 ## @yebt
 ##
 ################################
-
-. /home/de-web/Develop/repositories/dotfiles/modules/colors.sh
 
 # Abstract alert
 s_alert() {
