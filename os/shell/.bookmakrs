@@ -1,0 +1,70 @@
+#!/bin/bash
+
+################################
+## Bookmarks Manager
+## @yebt
+##
+################################
+
+SCRIPT_DIR="$(dirname $(realpath $0))"
+MODULES_DIR="$(realpath "$SCRIPT_DIR/../../modules")"
+
+##Imports
+
+. "$MODULES_DIR/colors.sh"
+. "$MODULES_DIR/alerts.sh"
+. "$MODULES_DIR/help.sh"
+
+# TODO: Make load options
+
+## Funcs
+bmm() {
+	local VERSION="0.0.2"
+	local FNAME="$FUNCNAME"
+	local options=(
+		"-a,--add [dirname];Add a new bookmark for 'dirname' passed, use CWD by default"
+		"-d,--delete [name];Remove the bookmark with the 'name' passed, use the CWD basename by default"
+		"-n,--name name;Used for pass a name to bookmark to create, without this option the bookmark will be defined with basename of CWD"
+		"-v,--version;Show version"
+		"-h,--help;Show this help message"
+	)
+	usage(){
+		
+		echo -e "${FG_BL}Usage: ${NC}${F_BLD}$FNAME${NC} ${FG_BL}${F_TLC}[options]${NC}"
+		show_help "${options[@]}"
+		if [[ -n "$1" ]]; then
+			exit $1
+		fi
+	}
+	#chekc pass
+	if [[ "${#@}" == 0 ]]; then
+		s_err "No options passed"
+		usage 1
+		# show_help "${options[@]}"
+	fi
+	while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do
+		case $1 in
+		-V | --version)
+			echo "$VERSION"
+			exit
+			;;
+		-h | --help)
+			show_help "${options[@]}"
+			exit
+			;;
+		-s | --string)
+			shift
+			string=$1
+			;;
+		-f | --flag)
+			flag=1
+			;;
+		esac
+		shift
+	done
+	if [[ "$1" == '--' ]]; then shift; fi
+
+}
+
+## Test
+bmm
