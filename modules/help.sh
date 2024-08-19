@@ -22,7 +22,7 @@ _s_ptn_txt() {
 	done <<<"$wrapped_text"
 }
 # main
-s_fll_ptns() {
+show_help() {
 	for _ptn in "${@}"; do
 		IFS=';' read -ra SLPT_OPTS <<<"$_ptn"
 		local _opt="${SLPT_OPTS[0]}"
