@@ -16,15 +16,15 @@ s_alert() {
 	echo -e "${_color}${F_BLD}${_icon}${NC}${_color}${_text}${NC}"
 }
 
-s_inf(){
+s_inf() {
 	s_alert $FG_BL "$1" "[i]"
 }
-s_err(){
+s_err() {
 	s_alert $FG_RD "$1" "[x]"
 }
-s_war(){
+s_war() {
 	s_alert $FG_RNG "$1" "[!]"
 }
-s_suc(){
+s_suc() {
 	s_alert $FG_GRN "$1" "[>]"
 }
